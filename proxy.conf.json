@@ -1,0 +1,9 @@
+{
+  "/api": {
+    "target": "https://www.apicountries.com",
+    "changeOrigin": true,
+    "pathRewrite": { "^/api": "" },
+    "secure": true,
+    "logLevel": "debug"
+  }
+}

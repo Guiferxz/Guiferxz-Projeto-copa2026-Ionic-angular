@@ -1,0 +1,35 @@
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  gap: 12px;
+  color: #666;
+}
+
+.bandeira {
+  width: 52px;
+  height: 34px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-right: 8px;
+}
+
+ion-list {
+  margin-bottom: 8px;
+}
+
+ion-list-header {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #1565c0;
+  background-color: #e3f2fd;
+  border-left: 4px solid #1565c0;
+  padding-left: 12px;
+}
+
+ion-item h3 {
+  font-weight: 600;
+}

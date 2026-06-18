@@ -1,0 +1,36 @@
+.hero {
+  background-color: #1565c0;
+  color: white;
+  text-align: center;
+  padding: 40px 16px;
+
+  h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 0 0 8px;
+  }
+
+  p {
+    margin: 4px 0;
+    font-size: 0.95rem;
+    opacity: 0.9;
+  }
+}
+
+.botoes {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+ion-item {
+  --padding-start: 16px;
+}
+
+ion-list-header {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #1565c0;
+  margin-top: 8px;
+}

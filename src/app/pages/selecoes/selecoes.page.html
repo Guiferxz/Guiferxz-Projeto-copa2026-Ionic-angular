@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Seleções</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar
+      placeholder="Buscar seleção..."
+      (ionInput)="onBuscaChange($event)">
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  @if (carregando) {
+    <div class="loading">
+      <ion-spinner name="crescent" color="primary"></ion-spinner>
+      <p>Carregando seleções...</p>
+    </div>
+  }
+
+  @if (erro) {
+    <div class="loading">
+      <p>Erro ao carregar. Verifique sua conexão.</p>
+      <ion-button (click)="carregarSelecoes()">Tentar novamente</ion-button>
+    </div>
+  }
+
+  @if (!carregando && !erro) {
+    <ion-list>
+      <ion-list-header>{{ selecoesFiltradas.length }} seleções encontradas</ion-list-header>
+
+      @for (selecao of selecoesFiltradas; track selecao.id) {
+        <ion-item [appDestaque]="'#e8f0fe'" [routerLink]="['/detalhes', selecao.id]" button>
+          <img [src]="selecao.bandeira" [alt]="selecao.nome" class="bandeira" slot="start" />
+          <ion-label>
+            <h3>{{ selecao.nome | uppercase }}</h3>
+            <p>Grupo {{ selecao.grupo }} · {{ selecao.confederacao }}</p>
+            <p>População: {{ selecao.populacao | numeroGrande }}</p>
+          </ion-label>
+          @if (selecao.titulos > 0) {
+            <ion-badge slot="end" color="warning">{{ selecao.titulos }}x 🏆</ion-badge>
+          }
+        </ion-item>
+      }
+    </ion-list>
+  }
+
+</ion-content>

@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Copa do Mundo 2026</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="hero">
+    <h1>FIFA World Cup 2026</h1>
+    <p>EUA 🇺🇸 · México 🇲🇽 · Canadá 🇨🇦</p>
+    <p>11 de Junho — 19 de Julho de 2026</p>
+  </div>
+
+  <ion-list>
+    <ion-list-header>Informações Gerais</ion-list-header>
+
+    @for (stat of estatisticas; track stat.label) {
+      <ion-item>
+        <ion-icon [name]="stat.icone" slot="start" color="primary"></ion-icon>
+        <ion-label>
+          <h3>{{ stat.label }}</h3>
+          <p>{{ stat.valor }}</p>
+        </ion-label>
+      </ion-item>
+    }
+  </ion-list>
+
+  <div class="botoes">
+    <ion-button expand="block" routerLink="/selecoes" color="primary">
+      Ver Seleções
+    </ion-button>
+    <ion-button expand="block" routerLink="/grupos" color="secondary">
+      Ver Grupos
+    </ion-button>
+  </div>
+
+  <ion-list>
+    <ion-list-header>Cidades-Sede</ion-list-header>
+
+    @for (sede of sedes; track sede.cidade) {
+      <ion-item [appDestaque]="'#e8f0fe'">
+        <ion-label>
+          <h3>{{ sede.cidade }}</h3>
+          <p>{{ sede.estadio }} — {{ sede.pais }}</p>
+          <p>Capacidade: {{ sede.capacidade }}</p>
+        </ion-label>
+      </ion-item>
+    }
+  </ion-list>
+
+</ion-content>

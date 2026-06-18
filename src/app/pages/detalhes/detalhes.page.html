@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/selecoes"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      @if (selecao) { {{ selecao.nome }} } @else { Detalhes }
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  @if (carregando) {
+    <div class="loading">
+      <ion-spinner name="crescent" color="primary"></ion-spinner>
+      <p>Carregando...</p>
+    </div>
+  }
+
+  @if (!carregando && selecao) {
+
+    <div class="bandeira-container">
+      <img [src]="selecao.bandeira" [alt]="selecao.nome" class="bandeira-grande" />
+      <h2>{{ selecao.nome | uppercase }}</h2>
+      <ion-badge color="primary">Grupo {{ selecao.grupo }}</ion-badge>
+      <p class="data">Consultado em: {{ today | date:'dd/MM/yyyy' }}</p>
+    </div>
+
+    <ion-list>
+      <ion-list-header>Dados do País</ion-list-header>
+
+      <ion-item>
+        <ion-label>
+          <h3>Capital</h3>
+          <p>{{ selecao.capital }}</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <h3>População</h3>
+          <p>{{ selecao.populacao | numeroGrande }}</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <h3>Região</h3>
+          <p>{{ selecao.regiao }}</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <h3>Idioma(s)</h3>
+          <p>{{ selecao.idiomas }}</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <h3>Confederação</h3>
+          <p>{{ selecao.confederacao | confederacao }}</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>
+          <h3>Títulos Mundiais</h3>
+          @if (selecao.titulos > 0) {
+            <p>{{ selecao.titulos }}x Campeão Mundial 🏆</p>
+          } @else {
+            <p>Nenhum título ainda</p>
+          }
+        </ion-label>
+      </ion-item>
+
+    </ion-list>
+
+    <ion-list>
+      <ion-list-header>Curiosidades</ion-list-header>
+      @for (curiosidade of getCuriosidades(); track curiosidade) {
+        <ion-item>
+          <ion-label class="ion-text-wrap">⚽ {{ curiosidade }}</ion-label>
+        </ion-item>
+      }
+    </ion-list>
+
+  }
+
+</ion-content>

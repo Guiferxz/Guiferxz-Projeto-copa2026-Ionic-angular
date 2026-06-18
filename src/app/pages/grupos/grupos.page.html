@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Grupos da Copa 2026</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  @if (carregando) {
+    <div class="loading">
+      <ion-spinner name="crescent" color="primary"></ion-spinner>
+      <p>Carregando grupos...</p>
+    </div>
+  }
+
+  @if (!carregando) {
+    @for (grupo of grupos; track grupo.nome) {
+      <ion-list>
+        <ion-list-header>{{ grupo.nome }}</ion-list-header>
+
+        @for (selecaoId of grupo.selecoes; track selecaoId) {
+          <ion-item [routerLink]="['/detalhes', selecaoId]" button [appDestaque]="'#e8f0fe'">
+            @if (getSelecaoPorId(selecaoId); as s) {
+              <img [src]="s.bandeira" [alt]="s.nome" class="bandeira" slot="start" />
+              <ion-label>
+                <h3>{{ s.nome }}</h3>
+                <p>{{ s.confederacao }}</p>
+              </ion-label>
+              @if (s.titulos > 0) {
+                <ion-badge slot="end" color="warning">{{ s.titulos }}x 🏆</ion-badge>
+              }
+            } @else {
+              <ion-label>{{ selecaoId }}</ion-label>
+            }
+          </ion-item>
+        }
+      </ion-list>
+    }
+  }
+
+</ion-content>
